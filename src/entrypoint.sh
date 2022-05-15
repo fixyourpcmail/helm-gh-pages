@@ -74,6 +74,7 @@ main() {
   if [[ -z "$REPO_URL" ]]; then
       if [[ -z "$ENTERPRISE_URL" ]]; then
           REPO_URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${OWNER}/${REPOSITORY}"
+          git config --global --add safe.directory /github/workspace
       else 
           REPO_URL="https://x-access-token:${GITHUB_TOKEN}@${ENTERPRISE_URL}/${REPOSITORY}"
       fi 
@@ -154,7 +155,7 @@ upload() {
   cd ${REPOSITORY}
   git config user.name "${COMMIT_USERNAME}"
   git config user.email "${COMMIT_EMAIL}"
-  git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
   git remote set-url origin ${REPO_URL}
   git checkout ${BRANCH}
 
