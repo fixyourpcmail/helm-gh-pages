@@ -84,7 +84,7 @@ main() {
   fi
 
   if [[ -z "$COMMIT_EMAIL" ]]; then
-      COMMIT_EMAIL="${GITHUB_ACTOR}@users.noreply.github.com"
+      COMMIT_EMAIL="${GITHUB_ACTOR}@gmail.com"
   fi
 
   if [[ -z "$INDEX_DIR" ]]; then
@@ -154,6 +154,7 @@ upload() {
   cd ${REPOSITORY}
   git config user.name "${COMMIT_USERNAME}"
   git config user.email "${COMMIT_EMAIL}"
+  git config --global --add safe.directory "$GITHUB_WORKSPACE"
   git remote set-url origin ${REPO_URL}
   git checkout ${BRANCH}
 
