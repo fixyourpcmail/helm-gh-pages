@@ -1,4 +1,4 @@
-FROM stefanprodan/alpine-base:latest
+FROM rb-dtr.de.bosch.com/osd/osd6:latest
 
 RUN apk --no-cache add git
 
