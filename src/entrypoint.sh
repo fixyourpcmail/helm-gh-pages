@@ -17,6 +17,8 @@
 set -o errexit
 set -o pipefail
 
+git config --global --add safe.directory /github/workspace
+
 GITHUB_TOKEN=$1
 CHARTS_DIR=$2
 CHARTS_URL=$3
@@ -74,7 +76,6 @@ main() {
   if [[ -z "$REPO_URL" ]]; then
       if [[ -z "$ENTERPRISE_URL" ]]; then
           REPO_URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${OWNER}/${REPOSITORY}"
-          git config --global --add safe.directory /github/workspace
       else 
           REPO_URL="https://x-access-token:${GITHUB_TOKEN}@${ENTERPRISE_URL}/${REPOSITORY}"
       fi 
